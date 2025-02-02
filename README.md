@@ -136,3 +136,24 @@ CameraRenderer renderer = new CameraRenderer();
 ```
 
 在第二个Render重载里->在一个循环里按顺序渲染camera
+
+```
+	public void Render (ScriptableRenderContext context, Camera camera) {
+		this.context = context;
+		this.camera = camera;
+
+		DrawVisibleGeometry();
+		Submit();
+	}
+
+	void Submit () {
+		context.Submit();
+	}
+
+	void DrawVisibleGeometry () {
+		context.DrawSkybox(camera);
+	}
+
+```
+
+ 使用DrawSkybox来单独绘制skybox，是否绘制只由clearflag控制
