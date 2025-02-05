@@ -26,34 +26,27 @@ protected override RenderPipeline CreatePipeline() {}
 **1.3 CameraRenderer**
 
 ```
-public class CameraRenderer
-```
 
-无需引用类型
+**2.1CameraRenderer**
 
 ```
-ScriptableRenderContext context;
-Camera camera;
-public void Render (ScriptableRenderContext context, Camera camera) {
+public class CameraRenderer {
+
+	ScriptableRenderContext context;
+
+	Camera camera;
+
+	public void Render (ScriptableRenderContext context, Camera camera) {
 		this.context = context;
 		this.camera = camera;
 	}
+}
 ```
 
 Render： 渲染所有摄像机视野范围内的图形
 
 ```
-public void Render (ScriptableRenderContext context, Camera camera) {
-		this.context = context;
-		this.camera = camera;
-		DrawVisibleGeometry();
-	}
-	void DrawVisibleGeometry () {
-		context.DrawSkybox(camera);
-	}
-```
-
-单独绘制天空盒，注意此步只是将绘制动作放入了缓冲队列中，并未真正绘制
+**2.2 skybox**
 
 ```
 public void Render (ScriptableRenderContext context, Camera camera) {
@@ -89,6 +82,11 @@ public void Render (ScriptableRenderContext context, Camera camera) {
 设置view-projection矩阵(unity_MatrixVP),应用相机属性
 
 ```
+**2.3 command buffer**
+
+```
+
+
 const string bufferName = "Render Camera";
 
 	CommandBuffer buffer = new CommandBuffer {
@@ -142,8 +140,13 @@ CameraRenderer renderer = new CameraRenderer();
 		this.context = context;
 		this.camera = camera;
 
+		Setup();
 		DrawVisibleGeometry();
 		Submit();
+	}
+
+	void Setup () {
+		context.SetupCameraProperties(camera);//对其摄像机矩阵（unity——MatrixVP正交矩阵）
 	}
 
 	void Submit () {
