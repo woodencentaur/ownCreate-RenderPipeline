@@ -14,6 +14,7 @@ flowchart TD
     TC --> AC
 
     AC --> P[progress.md]
+```
 
 ## Core Workflows
 
@@ -29,7 +30,7 @@ flowchart TD
     CheckFiles --> |Yes| Verify[Verify Context]
     Verify --> Strategy[Develop Strategy]
     Strategy --> Present[Present Approach]
-
+```
 ### Act Mode
 ```mermaid
 flowchart TD
@@ -38,7 +39,7 @@ flowchart TD
     Update --> Rules[Update .cursorrules if needed]
     Rules -->Execute[Execute Task]
     Exucute --> Document[Document Changes]
-
+```
 
 ## Documentation Updates
 
@@ -62,6 +63,7 @@ flowchart TD
     end
 
     Start --> Process
+```
 Note: When triggered by **update memory bank**, I MUST review every memory bankfile, even if some don't require updates. Focus particularly on activeContext.md and progress.md as they trac current state.
 
 
@@ -87,7 +89,7 @@ flowchart TD
 
     Start --> Learn
     Learn --> Apply
-
+```
 
 ### What to Capture
 - Critical implementation paths
